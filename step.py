@@ -22,7 +22,10 @@ print(marcia)
 
 # print(dic)
 
-print(15/12)
+def divide_by_two(num):
+    return num / 2;
+
+print(divide_by_two(4))
 
 
 open
