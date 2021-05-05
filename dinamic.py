@@ -1,8 +1,4 @@
-dic = {
-    "Kuma": "Bartholomew",
-    "Monkey D.": "Dragon",
-    "Charlote": "Linlin"
-}
+def names(first, second):
+    print(f"{first} and {second}")
 
-for first, second  in dic.items():
-    print(second, first)
+names(second="susan", first="malak")
