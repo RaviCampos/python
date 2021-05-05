@@ -1,3 +1,5 @@
-nums = [1, 2, 3, 4]
+names = ["carlos", "linda", "numibia", "lucas", "suelen", "christiana"]
 
-print(list(map(lambda x: x**2, nums)))
+new = [f"The long name {name}" for name in names if len(name) > 5]
+
+print(new)
