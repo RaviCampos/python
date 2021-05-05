@@ -1,4 +1,3 @@
-def names(first, second):
-    print(f"{first} and {second}")
+nums = [1, 2, 3, 4]
 
-names(second="susan", first="malak")
+print(list(map(lambda x: x**2, nums)))
