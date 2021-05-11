@@ -6,4 +6,4 @@ class Awesome:
 
 we = Awesome("super", "lun")
 
-print(we.you, we.me)
+print(we.me)
