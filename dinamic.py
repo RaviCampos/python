@@ -1,5 +1,9 @@
-names = ["carlos", "linda", "numibia", "lucas", "suelen", "christiana"]
 
-new = [f"The long name {name}" for name in names if len(name) > 5]
+class Awesome:
+    def __init__(self, you, me):
+        self.you = you
+        self.me = me
 
-print(new)
+we = Awesome("super", "lun")
+
+print(we.you, we.me)
