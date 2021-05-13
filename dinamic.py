@@ -9,4 +9,4 @@ week = count_week()
 for num in week:
     print(num)
 
-print(week)
+print(range())
