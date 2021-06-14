@@ -14,3 +14,4 @@ data.loc[data["price"] > 540000, "level"] = "high_standard"
 data.loc[data["price"] <= 540000, "level"] = "low_standard"
 
 print(data.head(10))
+# water.shape[0]
