@@ -18,8 +18,34 @@ import time
 
 # '...and now we\'re done!'
 
+# auxiliary funcs
+def display_avg_metrics(df):
+    df1 = df[["id", "zipcode"]].groupby("zipcode").count().reset_index()
+    df2 = df[["price", "zipcode"]].groupby("zipcode").mean().reset_index()
+    df3 = df[["sqft_living", "zipcode"]].groupby("zipcode").mean().reset_index()
+    df4 = data[["price/sqft", "zipcode"]].groupby("zipcode").mean().reset_index()
 
+    m1 = df1.merge(df2, how='inner', on='zipcode')
+    m2 = m1.merge(df3, how='inner', on='zipcode')
+    m3 = m2.merge(df4, how='inner', on='zipcode')
 
+    m3.columns = ["zipcode", "real states", "avg price", "avg sqft living", "avg price by sqft"]
+
+    st.write(m3.round())
+
+def display_desc_statistics(df):
+    num_attributes = df.select_dtypes(['int64', 'float64']).drop(columns='id')
+    mean = num_attributes.apply(np.mean)
+    median = num_attributes.apply(np.median)
+    std = num_attributes.apply(np.std)
+    max_ = num_attributes.apply(np.max)
+    min_ = num_attributes.apply(np.min)
+
+    df1 = pd.concat([max_, min_, median, mean, std], axis='columns')
+    df1.columns = ['max', 'min', "median", "mean", "std"]
+    df1 = df1.transpose()
+
+    st.write(df1.round())
 
 # use a decorator to mantain the data in ram, not in hd
 @st.cache(allow_output_mutation=True)
@@ -55,15 +81,22 @@ elif (f_attributes == []) & (f_zip_code != []):
 else:
     filtered_data = data.copy()
 
+st.write(filtered_data)
+
 # average metrics
-df1 = filtered_data[["id", "zipcode"]].groupby("zipcode").count().reset_index()
-df2 = filtered_data[["price", "zipcode"]].groupby("zipcode").mean().reset_index()
-df3 = filtered_data[["sqft_living", "zipcode"]].groupby("zipcode").mean().reset_index()
-df4 = data[["price/sqft", "zipcode"]].groupby("zipcode").mean().reset_index()
+st.write("### Average metrics")
+try:
+    display_avg_metrics(filtered_data)
+except:
+    display_avg_metrics(data)
 
+# descriptive statistics
+st.write("### Descriptive statistics")
+try:
+    display_desc_statistics(filtered_data)
+except:
+    display_desc_statistics(data)
 
-
-st.write(filtered_data.head())
 
 
 
