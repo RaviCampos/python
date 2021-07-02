@@ -36,4 +36,4 @@ def gcd(a, b):
     remainder = a % b
     return gcd(b, remainder)
 
-print(gcd(39188484, 2653264))
+# print(gcd(39188484, 2653264))
