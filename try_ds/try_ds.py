@@ -8,6 +8,7 @@ data = pd.read_csv("./kc_house_data.csv")
 # data["bedrooms"] = data["bedrooms"].astype( int64 )
 # print(data.dtypes)
 
+
 data["level"] = "standard"
 
 data.loc[data["price"] > 540000, "level"] = "high_standard"
